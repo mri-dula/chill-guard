@@ -1,0 +1,20 @@
+serial:
+  # Leave as "auto" to detect the Pico automatically, or set manually e.g. /dev/cu.usbmodem101
+  port: auto
+  baud_rate: 115200
+
+thresholds:
+  temp_low:  18.0     # °C — alert if temperature drops below this
+  temp_high: 26.0     # °C — alert if temperature rises above this
+
+webhook:
+  cooldown: 900                  # seconds — minimum gap between webhook calls (900 = 15 minutes)
+  url: "https://your-webhook-url.com/endpoint"
+  method: POST
+  headers:
+    Content-Type: application/json
+    # Authorization: "Bearer your-token-here"   # uncomment if needed
+  payload:
+    action: "{action}"
+    current_temperature: "{temperature}"
+    level: "{level}"
